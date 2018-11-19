@@ -35,7 +35,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -77,12 +77,12 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Android
@@ -113,10 +113,10 @@ TextureImporter:
       name: standing2_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 31
-        height: 40
+        width: 28
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,7 +124,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40e9c2877f4aa6a4c960001e604aa923
+      spriteID: a4ac67a0c52a63045918662adc509d76
       vertices: []
       indices: 
       edges: []
@@ -133,10 +133,10 @@ TextureImporter:
       name: standing2_1
       rect:
         serializedVersion: 2
-        x: 31
+        x: 32
         y: 0
-        width: 31
-        height: 40
+        width: 28
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,7 +144,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1537a0b2ba2b8949a29c5d2afb9a9f5
+      spriteID: 9aba27fb2bfa62f469ed8073882d7d82
       vertices: []
       indices: 
       edges: []
@@ -153,10 +153,10 @@ TextureImporter:
       name: standing2_2
       rect:
         serializedVersion: 2
-        x: 62
+        x: 63
         y: 0
-        width: 31
-        height: 40
+        width: 28
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,7 +164,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70503a438c08b244fa08d8ee6c74a6d9
+      spriteID: 86c2cd917a1178b418566b468a0c2a28
       vertices: []
       indices: 
       edges: []
@@ -173,10 +173,10 @@ TextureImporter:
       name: standing2_3
       rect:
         serializedVersion: 2
-        x: 93
+        x: 94
         y: 0
-        width: 31
-        height: 40
+        width: 28
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,7 +184,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22ebce264d0bdd74a8e1556ee74a708a
+      spriteID: c422bd0d47adbc949ab32eda1f23a7cb
       vertices: []
       indices: 
       edges: []
@@ -192,7 +192,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: bc9bf8ec745fbb448a5ad43979a0ceee
+    spriteID: cd5d652711d91e64a9d6c85b8aa1f4fb
     vertices: []
     indices: 
     edges: []
