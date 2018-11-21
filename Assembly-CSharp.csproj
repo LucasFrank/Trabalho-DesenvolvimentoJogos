@@ -62,6 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\GameoverController.cs" />
+    <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Users/Lucas/Downloads/Projetos - DJ/Trabalho2/Trabalho3-DJ/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
