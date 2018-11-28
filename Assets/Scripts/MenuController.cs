@@ -14,10 +14,14 @@ public class MenuController : MonoBehaviour {
     }
 
     public void optionsUI() {
-
+        SceneManager.LoadScene("Options");
     }
 
     public void quitGame() {
         Application.Quit();
+    }
+
+    public void returnMenu() {
+        SceneManager.LoadScene("Menu");
     }
 }

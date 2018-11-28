@@ -6,6 +6,7 @@ public enum PlayerState {
     Standing,
     Running,
     Jumping,
+    Falling,
     Attacking,
     Combo,
     StandDown,
@@ -17,14 +18,16 @@ public class PlayerController : MonoBehaviour {
     private Animator animatorPlayer;
     private Collider2D attackingCollider;
     private Collider2D comboCollider;
+    private Rigidbody2D rb;
 
     private PlayerState state;
     private bool grounded = false;
     private float movingSpeed = 5;
-    private float jumpForce = 5;
+    private float jumpForce = 10;
 
     // Use this for initialization
     void Start () {
+        this.rb = GetComponent<Rigidbody2D>();
         this.state = PlayerState.Standing;
         this.animatorPlayer = GetComponent<Animator>();
         this.attackingCollider = GameObject.FindGameObjectWithTag("AttackingCollider").GetComponent<Collider2D>();
@@ -40,9 +43,11 @@ public class PlayerController : MonoBehaviour {
         float dx = Input.GetAxis("Horizontal");
         float dy = Input.GetAxis("Vertical");
 
-        GetComponent<Rigidbody2D>().velocity = new Vector3(movingSpeed * dx, GetComponent<Rigidbody2D>().velocity.y, 0);
+        
 
         if (this.state != PlayerState.StandDown) {
+            this.rb.velocity = new Vector3(movingSpeed * dx, this.rb.velocity.y, 0);
+
             if (dx != 0) {
 
                 if (dx > 0)
@@ -59,7 +64,7 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.Space)) {
                 if (this.grounded) {
-                    GetComponent<Rigidbody2D>().velocity = new Vector3(GetComponent<Rigidbody2D>().velocity.x, jumpForce, 0);
+                    this.rb.velocity = new Vector3(this.rb.velocity.x, jumpForce, 0);
                     this.grounded = false;
                     this.state = PlayerState.Jumping;
                 }
@@ -74,6 +79,11 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
+        if(this.rb.velocity.y < -0.2) {
+            this.state = PlayerState.Falling;
+            this.grounded = false;
+        }
+
         if(dy != 0) {
             if (dy > 0) {
                 if(this.state == PlayerState.StandDown)
@@ -86,6 +96,7 @@ public class PlayerController : MonoBehaviour {
 
         this.animatorPlayer.SetBool("Running", this.state == PlayerState.Running);
         this.animatorPlayer.SetBool("Jumping", this.state == PlayerState.Jumping);
+        this.animatorPlayer.SetBool("Falling", this.state == PlayerState.Falling);
         this.animatorPlayer.SetBool("StandUp", this.state == PlayerState.StandUp);
         this.animatorPlayer.SetBool("StandDown", this.state == PlayerState.StandDown);
         this.animatorPlayer.SetBool("Attacking", this.state == PlayerState.Attacking);
