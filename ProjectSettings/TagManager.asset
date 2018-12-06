@@ -7,6 +7,10 @@ TagManager:
   - AttackingCollider
   - ComboCollider
   - Enemy
+  - LeftBound
+  - RightBound
+  - Ground
+  - Roof
   layers:
   - Default
   - TransparentFX

@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
     private PlayerState state;
     private bool grounded = false;
     private float movingSpeed = 5;
-    private float jumpForce = 10;
+    private float jumpForce = 12;
 
     // Use this for initialization
     void Start () {
