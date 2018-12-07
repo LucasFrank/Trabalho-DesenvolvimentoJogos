@@ -43,11 +43,9 @@ public class PlayerController : MonoBehaviour {
         float dx = Input.GetAxis("Horizontal");
         float dy = Input.GetAxis("Vertical");
 
-        
-
         if (this.state != PlayerState.StandDown) {
             this.rb.velocity = new Vector3(movingSpeed * dx, this.rb.velocity.y, 0);
-
+            Debug.Log(rb.velocity.x);
             if (dx != 0) {
 
                 if (dx > 0)
@@ -107,6 +105,7 @@ public class PlayerController : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
         this.grounded = true;
         this.state = PlayerState.Standing;
+
     }
 
     public void activateAttacking() {
