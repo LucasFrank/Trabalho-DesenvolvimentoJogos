@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if(this.rb.velocity.y < -0.2) {
+        if(this.rb.velocity.y < -0.5f) {
             this.state = PlayerState.Falling;
             this.grounded = false;
         }
