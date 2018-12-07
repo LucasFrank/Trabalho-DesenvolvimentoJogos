@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour {
 
         if (this.state != PlayerState.StandDown) {
             this.rb.velocity = new Vector3(movingSpeed * dx, this.rb.velocity.y, 0);
-            Debug.Log(rb.velocity.x);
             if (dx != 0) {
 
                 if (dx > 0)

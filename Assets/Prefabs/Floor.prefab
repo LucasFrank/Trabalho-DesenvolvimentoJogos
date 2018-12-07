@@ -834,7 +834,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.02
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -854,7 +854,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.02
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -874,7 +874,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.02
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -894,7 +894,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.02
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -914,7 +914,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.02
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -934,7 +934,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.02
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -954,7 +954,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.02
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -974,7 +974,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.02
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -994,7 +994,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.02
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -1014,7 +1014,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.02
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
