@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 0a616bedd1d4e1d41a51f5cad3a63efb
   - enabled: 1
+    path: Assets/Scenes/StartCinematic.unity
+    guid: 0558128c1c134a04ca17a0b2253cd6bb
+  - enabled: 1
     path: Assets/Scenes/Options.unity
     guid: 43cc661a7dfe51c439ccb3ef2b02a111
   - enabled: 1

@@ -6,7 +6,7 @@ using UnityEngine;
 public class MenuController : MonoBehaviour {
 
     public void startGame() {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("StartCinematic");
     }
 
     public void loadGame() {

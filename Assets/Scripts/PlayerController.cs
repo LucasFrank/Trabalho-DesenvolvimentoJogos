@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour {
 
     private PlayerState state;
     private bool grounded = false;
+    private bool attackingMode = false;
     private float movingSpeed = 5;
     private float jumpForce = 13;
 
@@ -63,8 +64,10 @@ public class PlayerController : MonoBehaviour {
                 if (this.state != PlayerState.Jumping)
                     this.state = PlayerState.Running;
             } else {
-                if (this.state != PlayerState.Jumping)
+                if (this.state != PlayerState.Jumping) {
                     this.state = PlayerState.Standing;
+                    this.attackingMode = false;
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Space)) {
@@ -76,14 +79,22 @@ public class PlayerController : MonoBehaviour {
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.X)) {
-                this.asPlayer.PlayOneShot(attackSound);
-                this.state = PlayerState.Attacking;
-            }
+            if (this.grounded && this.state != PlayerState.Running) {
+                if (Input.GetKeyDown(KeyCode.X)) {
+                    if (!attackingMode) {
+                        this.asPlayer.PlayOneShot(attackSound);
+                        this.state = PlayerState.Attacking;
+                        this.attackingMode = true;
+                    }
+                }
 
-            if (Input.GetKeyDown(KeyCode.C)) {
-                this.asPlayer.PlayOneShot(ComboSound);
-                this.state = PlayerState.Combo;
+                if (Input.GetKeyDown(KeyCode.C)) {
+                    if (!attackingMode) {
+                        this.asPlayer.PlayOneShot(ComboSound);
+                        this.state = PlayerState.Combo;
+                        this.attackingMode = true;
+                    }
+                }
             }
         }
 
@@ -131,11 +142,13 @@ public class PlayerController : MonoBehaviour {
     public void deactivateAttacking() {
         this.attackingCollider.enabled = false;
         this.attackingCollider.isTrigger = false;
+        this.attackingMode = false;
     }
 
     public void deactivateCombo() {
         this.comboCollider.enabled = false;
         this.comboCollider.isTrigger = false;
+        this.attackingMode = false;
     }
 
     bool IsGrounded() {
