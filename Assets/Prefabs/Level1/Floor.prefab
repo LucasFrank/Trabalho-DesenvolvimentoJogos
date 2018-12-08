@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50791218526624312}
   - component: {fileID: 66464383445983226}
   - component: {fileID: 61428515019791702}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FloorBlock (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 50867329580354272}
   - component: {fileID: 66354592673217000}
   - component: {fileID: 61090035836681784}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FloorBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 50585642096389126}
   - component: {fileID: 66617048488711448}
   - component: {fileID: 61008420697735482}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FloorBlock (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 50592490418766476}
   - component: {fileID: 66206144758512616}
   - component: {fileID: 61312131442258864}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FloorBlock (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 50180762859999914}
   - component: {fileID: 66450218315492026}
   - component: {fileID: 61232001340255162}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FloorBlock (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 50066726587221814}
   - component: {fileID: 66660718412487852}
   - component: {fileID: 61418424013573666}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FloorBlock (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 50586822497759344}
   - component: {fileID: 66068399207287876}
   - component: {fileID: 61594452623340374}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FloorBlock (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 50442199633401798}
   - component: {fileID: 66720865078515586}
   - component: {fileID: 61578278319567228}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FloorBlock (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 50055001350599548}
   - component: {fileID: 66699407507140008}
   - component: {fileID: 61787439188603942}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FloorBlock (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 50254617990432740}
   - component: {fileID: 66730759989487662}
   - component: {fileID: 61636358000063080}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FloorBlock (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

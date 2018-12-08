@@ -15,15 +15,22 @@ public enum PlayerState {
 
 public class PlayerController : MonoBehaviour {
 
+    public AudioClip jumpSound;
+    public AudioClip attackSound;
+    public AudioClip ComboSound;
+
     private Animator animatorPlayer;
     private Collider2D attackingCollider;
     private Collider2D comboCollider;
     private Rigidbody2D rb;
+    private AudioSource asPlayer;
 
     private PlayerState state;
     private bool grounded = false;
     private float movingSpeed = 5;
-    private float jumpForce = 12;
+    private float jumpForce = 13;
+
+    public LayerMask groundLayer;
 
     // Use this for initialization
     void Start () {
@@ -32,6 +39,7 @@ public class PlayerController : MonoBehaviour {
         this.animatorPlayer = GetComponent<Animator>();
         this.attackingCollider = GameObject.FindGameObjectWithTag("AttackingCollider").GetComponent<Collider2D>();
         this.comboCollider = GameObject.FindGameObjectWithTag("ComboCollider").GetComponent<Collider2D>();
+        this.asPlayer = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -61,6 +69,7 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.Space)) {
                 if (this.grounded) {
+                    this.asPlayer.PlayOneShot(jumpSound);
                     this.rb.velocity = new Vector3(this.rb.velocity.x, jumpForce, 0);
                     this.grounded = false;
                     this.state = PlayerState.Jumping;
@@ -68,15 +77,17 @@ public class PlayerController : MonoBehaviour {
             }
 
             if (Input.GetKeyDown(KeyCode.X)) {
+                this.asPlayer.PlayOneShot(attackSound);
                 this.state = PlayerState.Attacking;
             }
 
             if (Input.GetKeyDown(KeyCode.C)) {
+                this.asPlayer.PlayOneShot(ComboSound);
                 this.state = PlayerState.Combo;
             }
         }
 
-        if(this.rb.velocity.y < -0.5f) {
+        if(!IsGrounded()) {
             this.state = PlayerState.Falling;
             this.grounded = false;
         }
@@ -127,5 +138,16 @@ public class PlayerController : MonoBehaviour {
         this.comboCollider.isTrigger = false;
     }
 
+    bool IsGrounded() {
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+        float distance = 2.0f;
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
+        if (hit.collider != null) {
+            return true;
+        }
+
+        return false;
+    }
 
 }
