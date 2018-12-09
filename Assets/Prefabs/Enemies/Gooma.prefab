@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 58466786086491064}
   - component: {fileID: 50402541479506820}
   - component: {fileID: 114604009991482242}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Gooma
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e31affde5f7204d9dbc514b163986b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: {fileID: 1289176045594144, guid: 2946d786d1a74b646a803bfe620854cb, type: 2}
 --- !u!212 &212515127828432126
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingsController : MonoBehaviour {
@@ -43,11 +43,14 @@ public class SettingsController : MonoBehaviour {
         resolutionDropdown.RefreshShownValue();
 
         fullscreenToggle.isOn = Screen.fullScreen;
-
-        qualityDropdown.value = PlayerPrefs.GetInt("Quality");
-        qualityDropdown.RefreshShownValue();
-
-        volumeSlider.value = PlayerPrefs.GetFloat("Volume");
+        if (PlayerPrefs.HasKey("Quality")) {
+            qualityDropdown.value = PlayerPrefs.GetInt("Quality");
+            QualitySettings.SetQualityLevel(qualityDropdown.value);
+            qualityDropdown.RefreshShownValue();
+        }
+        if (PlayerPrefs.HasKey("Volume")) {
+            volumeSlider.value = PlayerPrefs.GetFloat("Volume");
+        }
         
     }
 
@@ -69,5 +72,10 @@ public class SettingsController : MonoBehaviour {
         int width = int.Parse(resolutionDropdown.options[resolutionIndex].text.Split(' ')[0]);
         int height = int.Parse(resolutionDropdown.options[resolutionIndex].text.Split(' ')[2]);
         Screen.SetResolution(width, height, Screen.fullScreen);
+    }
+
+
+    public void returnMenu() {
+        SceneManager.LoadScene("Menu");
     }
 }

@@ -4,18 +4,20 @@ using UnityEngine;
 
 public enum Difficulty { // movimentação por tempo, posição ou aleatorio
     Time,
-    Position,
-    Random
+    Follow,
 };
 
 public class EnemyController : MonoBehaviour {
 
     private Animator animatorEnemy;
+    public GameObject life;
     private Rigidbody2D rb;
     private bool alive = true;
     private int dir = 1;
     private float movingSpeed = 2;
     private float auxTime = 0;
+
+    private float lifeChance = 4;
 
     private Difficulty type;
 
@@ -39,18 +41,39 @@ public class EnemyController : MonoBehaviour {
                     dir = dir * -1;
                     auxTime = currentTime;
                 }
+            }else if (this.type == Difficulty.Follow) {
+                this.rb.velocity = new Vector3(-movingSpeed * dir, this.rb.velocity.y, 0);
+                //Keep going in the princess direction since it is the colliders position direction
             }
 
         }
-	}
+        
+    }
 
     private void OnTriggerEnter2D(Collider2D coll) {
-        if (coll.gameObject.tag == "AttackingCollider") {
-            Destroy(gameObject);
+        PolygonCollider2D pc = GetComponent<PolygonCollider2D>();
+        if (coll.tag == "AttackingCollider" && coll.IsTouching(pc)) {
+            int spawnChance = Random.Range(0, 10);
+            if(spawnChance < lifeChance) {
+                Instantiate<GameObject>(life, gameObject.transform.position, Quaternion.identity);
+            }
+        }
+        if (coll.tag == "ComboCollider" && coll.IsTouching(pc)) {
+
+            int spawnChance = Random.Range(0, 10);
+            if (spawnChance < lifeChance) {
+                Instantiate<GameObject>(life, gameObject.transform.position, Quaternion.identity);
+            }
         }
 
-        if (coll.gameObject.tag == "ComboCollider") {
-            Destroy(gameObject);
+        if(coll.tag == "Player") {
+            this.type = Difficulty.Follow;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D coll) {
+        if (coll.tag == "Player") {
+            this.type = Difficulty.Time;
         }
     }
 

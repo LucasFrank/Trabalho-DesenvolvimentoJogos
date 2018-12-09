@@ -23,7 +23,8 @@ GameObject:
   - component: {fileID: 95433332283390024}
   - component: {fileID: 50077693830944514}
   - component: {fileID: 60998639480602432}
-  m_Layer: 0
+  - component: {fileID: 114823378642479158}
+  m_Layer: 9
   m_Name: MechaKoopa
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -111,6 +112,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114823378642479158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1356762653129660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31e31affde5f7204d9dbc514b163986b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: {fileID: 1289176045594144, guid: 2946d786d1a74b646a803bfe620854cb, type: 2}
 --- !u!212 &212558415498242166
 SpriteRenderer:
   m_ObjectHideFlags: 1

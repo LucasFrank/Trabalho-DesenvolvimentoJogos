@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/BossScene.unity
     guid: 6d1f2b8de4ef5a34a80f09ba60be1bcb
   - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 377f21c3cb5d9d340b12e75fa26a3bf1
+  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 48ca44d0423f32b42b6b0c7ea88a64ba
   m_configObjects: {}

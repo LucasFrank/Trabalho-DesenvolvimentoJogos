@@ -15,6 +15,9 @@ TagManager:
   - Checkpoint
   - Range
   - Boss
+  - WeakSpot
+  - Life
+  - EnemyRangeDetection
   layers:
   - Default
   - TransparentFX
@@ -25,8 +28,8 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
+  - AttackingLayer
+  - Range
   - 
   - 
   - 

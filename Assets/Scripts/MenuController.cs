@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour {
 
-    void Start() {
-    }
 
     public void startGame() {
         SceneManager.LoadScene("StartCinematic");
@@ -18,6 +16,8 @@ public class MenuController : MonoBehaviour {
         if(levelLastTimePlayed == 1) {
             SceneManager.LoadScene("Level1");
         }else if(levelLastTimePlayed == 2) {
+            SceneManager.LoadScene("Level2Boss");
+        }else if(levelLastTimePlayed == 3) {
             SceneManager.LoadScene("Level2Boss");
         }
         
@@ -31,7 +31,4 @@ public class MenuController : MonoBehaviour {
         Application.Quit();
     }
 
-    public void returnMenu() {
-        SceneManager.LoadScene("Menu");
-    }
 }

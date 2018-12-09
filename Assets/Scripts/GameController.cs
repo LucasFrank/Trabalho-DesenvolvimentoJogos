@@ -9,10 +9,14 @@ public class GameController : MonoBehaviour {
     public GameObject playerPrefab;
     private GameObject player;
 
+    public GameObject boss;
+
     private Vector3 spawnPosition;
 
     private int currentLevel;
     private Scene currentScene;
+
+    private float dt2 = 0;
 
     // Use this for initialization
     void Start () {
@@ -28,24 +32,40 @@ public class GameController : MonoBehaviour {
                 currentLevel = 1;
             } else if (currentScene.name == "Level2Boss") {
                 currentLevel = 2;
-            }
+            } else if (currentScene.name == "BossScene")
+                currentLevel = 3;
         } else {
             currentLevel = 0;
         }
         PlayerPrefs.SetInt("Level", currentLevel);
-
         //Go to Main Menu
         if (Input.GetKeyDown(KeyCode.Q)) {
             SceneManager.LoadScene("Menu");
         }
 
+        // Verifying win
+        if (!boss && currentLevel == 3) {
+            float currentTime = Time.time;
+            if (currentTime - dt2 > 5.0f) {
+                SceneManager.LoadScene("Credits");
+                PlayerPrefs.SetInt("lives", 0);
+                PlayerPrefs.SetInt("Level", 0);
+            }
+        }else if(currentLevel == 3) {
+            dt2 = Time.time;
+        }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (currentLevel == 1) {
-            SceneManager.LoadScene("Level2Boss");
-        }else if(currentLevel == 2) {
-            SceneManager.LoadScene("BossScene");
+        if (collision.tag == "Player") {
+            if (currentLevel == 1) {
+                SceneManager.LoadScene("Level2Boss");
+            } else if (currentLevel == 2) {
+                SceneManager.LoadScene("BossScene");
+                currentLevel = 3;
+            }
         }
     }
 }

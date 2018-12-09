@@ -23,7 +23,8 @@ GameObject:
   - component: {fileID: 95159288526480618}
   - component: {fileID: 50516122619495586}
   - component: {fileID: 60410887618469322}
-  m_Layer: 0
+  - component: {fileID: 114453014350499826}
+  m_Layer: 9
   m_Name: Wiggler
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -114,6 +115,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114453014350499826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1844460772814932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31e31affde5f7204d9dbc514b163986b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: {fileID: 1289176045594144, guid: 2946d786d1a74b646a803bfe620854cb, type: 2}
 --- !u!212 &212580314529171462
 SpriteRenderer:
   m_ObjectHideFlags: 1

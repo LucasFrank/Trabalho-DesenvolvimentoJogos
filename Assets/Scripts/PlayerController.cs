@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour {
 
     public AudioClip jumpSound;
     public AudioClip attackSound;
-    public AudioClip ComboSound;
+    public AudioClip comboSound;
+    public AudioClip damagedSound;
 
     private Animator animatorPlayer;
     private Collider2D attackingCollider;
@@ -28,7 +29,6 @@ public class PlayerController : MonoBehaviour {
 
     private PlayerState state;
     private bool grounded = false;
-    private bool attackingMode = false;
     private float movingSpeed = 5;
     private float jumpForce = 13;
     public static int lives;
@@ -37,6 +37,14 @@ public class PlayerController : MonoBehaviour {
     private Vector3 respawnPoint = new Vector3(0, 1, 0);
 
     public LayerMask groundLayer;
+
+    private float imuneTime = 2.0f;
+    private float dt = 0;
+    private bool isImune = false;
+
+    private float attackCD = 0.8f;
+    private float dt2 = 0;
+    private float currentTime = 0;
 
     // Use this for initialization
     void Start () {
@@ -55,11 +63,17 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         inputHandler();
-	}
+        currentTime = Time.time;
+        if (currentTime - dt > imuneTime) {
+            isImune = false;
+        }
+    }
 
     void inputHandler() {
         float dx = Input.GetAxis("Horizontal");
         float dy = Input.GetAxis("Vertical");
+
+        float currentTime = Time.time;
 
         if (this.state != PlayerState.StandDown) {
             this.rb.velocity = new Vector3(movingSpeed * dx, this.rb.velocity.y, 0);
@@ -75,7 +89,6 @@ public class PlayerController : MonoBehaviour {
             } else {
                 if (this.state != PlayerState.Jumping) {
                     this.state = PlayerState.Standing;
-                    this.attackingMode = false;
                 }
             }
 
@@ -90,18 +103,18 @@ public class PlayerController : MonoBehaviour {
 
             if (this.grounded && this.state != PlayerState.Running) {
                 if (Input.GetKeyDown(KeyCode.X)) {
-                    if (!attackingMode) {
+                    if (currentTime - dt2 > attackCD) {
                         this.asPlayer.PlayOneShot(attackSound);
                         this.state = PlayerState.Attacking;
-                        this.attackingMode = true;
+                        dt2 = Time.time;
                     }
                 }
 
                 if (Input.GetKeyDown(KeyCode.C)) {
-                    if (!attackingMode) {
-                        this.asPlayer.PlayOneShot(ComboSound);
+                    if (currentTime - dt > attackCD) {
+                        this.asPlayer.PlayOneShot(comboSound);
                         this.state = PlayerState.Combo;
-                        this.attackingMode = true;
+                        dt2 = Time.time;
                     }
                 }
             }
@@ -129,31 +142,41 @@ public class PlayerController : MonoBehaviour {
         this.animatorPlayer.SetBool("StandDown", this.state == PlayerState.StandDown);
         this.animatorPlayer.SetBool("Attacking", this.state == PlayerState.Attacking);
         this.animatorPlayer.SetBool("Combo", this.state == PlayerState.Combo);
+
+
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision) {
         this.grounded = true;
         this.state = PlayerState.Standing;
-        if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Boss") {
-            controlLives(-1);
+        
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Boss") {
+            if (!isImune) {
+                controlLives(-1);
+                dt = Time.time;
+                isImune = true;
+            }
         }
     }
 
     private void controlLives(int update) {
+       
         int new_life = lives + update;
-        if(new_life <= 0) {
+        if(update < 0)
+            asPlayer.PlayOneShot(damagedSound);
+        if (new_life <= 0) {
             lives = 0;
             PlayerPrefs.SetInt("lives", lives);
             PlayerPrefs.Save();
             SceneManager.LoadScene("GameOver");
             gameObject.SetActive(false);
-        }
-        else if(new_life < maxLives){
+        } else if (new_life <= maxLives) {
             lives = new_life;
             PlayerPrefs.SetInt("lives", lives);
             PlayerPrefs.Save();
         }
+
         
     }
 
@@ -171,21 +194,23 @@ public class PlayerController : MonoBehaviour {
     public void deactivateAttacking() {
         this.attackingCollider.enabled = false;
         this.attackingCollider.isTrigger = false;
-        this.attackingMode = false;
     }
 
     public void deactivateCombo() {
         this.comboCollider.enabled = false;
         this.comboCollider.isTrigger = false;
-        this.attackingMode = false;
     }
 
     bool IsGrounded() {
         Vector2 position = transform.position;
         Vector2 direction = Vector2.down;
-        float distance = 2.0f;
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
-        if (hit.collider != null) {
+        float distance = 1.0f;
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(position.x, position.y - 0.5f), direction, distance, groundLayer);
+        RaycastHit2D hit1 = Physics2D.Raycast(new Vector2(position.x - 0.5f, position.y - 0.5f), direction, distance, groundLayer);
+        RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(position.x + 0.5f, position.y - 0.5f), direction, distance, groundLayer);
+        Debug.DrawRay(new Vector2(position.x - 0.5f, position.y - 0.5f), direction, Color.green, groundLayer);
+        Debug.DrawRay(new Vector2(position.x + 0.2f, position.y - 0.5f), direction, Color.green, groundLayer);
+        if (hit.collider != null || hit1.collider != null || hit2.collider != null) {
             return true;
         }
 
@@ -200,14 +225,22 @@ public class PlayerController : MonoBehaviour {
 
         if(collision.tag == "Hole") {
             controlLives(-1);
-            if (lives > 0)
+            if (lives > 0) {
                 transform.position = respawnPoint;
+                isImune = true;
+                dt = Time.time;
+            }
             
         }
 
         if(collision.tag == "Checkpoint") {
             Vector3 pos = collision.transform.position;
             respawnPoint = pos;
+        }
+
+        if(collision.tag == "Life" && !attackingCollider.enabled && !comboCollider.enabled) {
+            controlLives(1);
+            Destroy(collision.gameObject);
         }
 
     }
