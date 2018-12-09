@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour {
     private float auxTime = 0;
     private float dt = 0;
 
-    private Difficulty type; 
+    private Difficulty type;
 
     // Use this for initialization
     void Start () {
@@ -33,7 +33,7 @@ public class EnemyController : MonoBehaviour {
         if (alive) {
             if (this.type == Difficulty.Time) {
                 float currentTime = Time.time;
-                this.rb.velocity = new Vector3(movingSpeed * dir, this.rb.velocity.y, 0);
+                this.rb.velocity = new Vector3(-movingSpeed * dir, this.rb.velocity.y, 0);
                 transform.localScale = new Vector3(dir, 1, 1);
 
                 if (currentTime - auxTime > 2) {
@@ -41,6 +41,7 @@ public class EnemyController : MonoBehaviour {
                     auxTime = currentTime;
                 }
             }
+
         }
 	}
 

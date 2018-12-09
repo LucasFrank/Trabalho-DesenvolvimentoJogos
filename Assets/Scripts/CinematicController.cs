@@ -12,8 +12,10 @@ public class CinematicController : MonoBehaviour {
     public Canvas canvasText;
     public VideoPlayer player;
 
-	// Use this for initialization
-	void Start () {
+    
+
+    // Use this for initialization
+    void Start () {
         this.currentTime = Time.time;
 	}
 	
