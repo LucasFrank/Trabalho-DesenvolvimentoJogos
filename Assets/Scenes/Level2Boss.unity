@@ -2197,16 +2197,7 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
   - component: {fileID: 257233114}
-||||||| merged common ancestors
-  - component: {fileID: 644700744}
-  - component: {fileID: 644700743}
-=======
-  - component: {fileID: 644700744}
-  - component: {fileID: 644700743}
-  - component: {fileID: 644700745}
->>>>>>> e3878052ce9d9a6f6f4211b4b4d9302b9d703aef
   m_Layer: 0
   m_Name: SecondCenario
   m_TagString: Untagged
@@ -2260,25 +2251,7 @@ Transform:
   m_Father: {fileID: 432323092}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!1001 &279354278
-||||||| merged common ancestors
---- !u!1001 &669224157
-=======
---- !u!114 &644700745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 644700742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29ee8f64cea5b4e42b0d1374fe13b265, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  am: {fileID: 24100000, guid: 3fb51473bee287c44a9d3ed77d0d508f, type: 2}
---- !u!1001 &669224157
->>>>>>> e3878052ce9d9a6f6f4211b4b4d9302b9d703aef
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
