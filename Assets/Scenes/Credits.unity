@@ -490,8 +490,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Directed By\nScreenplay By\nProduced By\nEditor\nDirector of Photography\nMusic
-    by\n...\n\nAndr\xE9 de Souza Brito\nHemerson Aparecido da Costa Tacon\nLucas Rodrigues
-    Frank\n"
+    by\nHeart-Princess-Peach\nVideo by\nvideomaker580\r\n...\n\nAndr\xE9 de Souza
+    Brito\nHemerson Aparecido da Costa Tacon\nLucas Rodrigues Frank\n"
 --- !u!222 &1972536595
 CanvasRenderer:
   m_ObjectHideFlags: 0

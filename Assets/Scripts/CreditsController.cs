@@ -12,7 +12,7 @@ public class CreditsController : MonoBehaviour {
     private float currentTime;
     public Text canvasText;
 
-    private int maxPosition = 460;
+    private int maxPosition = 500;
     private float speed = 50.0f;
 
     private bool playOnce = false;

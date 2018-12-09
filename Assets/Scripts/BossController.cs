@@ -20,7 +20,7 @@ public class BossController : MonoBehaviour {
     private float imuneTime = 1.0f;
     private float dt = 0;
 
-
+    public bool pause = false;
 
 	// Use this for initialization
 	void Start () {
@@ -31,21 +31,29 @@ public class BossController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (playerInSight) {
-            bossAnimator.SetBool("Running", true);
-            this.rb.velocity = new Vector3(movingSpeed * dir, this.rb.velocity.y, 0);
-            if (transform.position.x > 3)
-                transform.position = new Vector3(3, 2, 0);
+        if (!pause) {
+            if (playerInSight) {
+                bossAnimator.SetBool("Running", true);
+                this.rb.velocity = new Vector3(movingSpeed * dir, this.rb.velocity.y, 0);
+                if (transform.position.x > 3)
+                    transform.position = new Vector3(3, 2, 0);
 
-            if(transform.position.x < -16.5f)
-                transform.position = new Vector3(-16.5f, 2, 0);
+                if (transform.position.x < -16.5f)
+                    transform.position = new Vector3(-16.5f, 2, 0);
+            } else {
+                bossAnimator.SetBool("Running", false);
+                this.rb.velocity = Vector3.zero;
+            }
         } else {
-            bossAnimator.SetBool("Running", false);
             this.rb.velocity = Vector3.zero;
+        }
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            pause = !pause;
+            bossAnimator.enabled = !pause;
         }
 
 
-        if(currentHits == maxHits) {
+        if (currentHits == maxHits) {
             Destroy(gameObject);
         }
 	}

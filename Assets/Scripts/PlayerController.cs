@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour {
     private float dt2 = 0;
     private float currentTime = 0;
 
+    public bool pause = false;
+
     // Use this for initialization
     void Start () {
         this.rb = GetComponent<Rigidbody2D>();
@@ -62,10 +64,20 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        inputHandler();
-        currentTime = Time.time;
-        if (currentTime - dt > imuneTime) {
-            isImune = false;
+        if (!pause) {
+            inputHandler();
+            currentTime = Time.time;
+            if (currentTime - dt > imuneTime) {
+                isImune = false;
+            }
+        } else {
+            this.rb.velocity = Vector3.zero;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            pause = !pause;
+            animatorPlayer.enabled = !pause;
         }
     }
 
@@ -111,7 +123,7 @@ public class PlayerController : MonoBehaviour {
                 }
 
                 if (Input.GetKeyDown(KeyCode.C)) {
-                    if (currentTime - dt > attackCD) {
+                    if (currentTime - dt2 > attackCD) {
                         this.asPlayer.PlayOneShot(comboSound);
                         this.state = PlayerState.Combo;
                         dt2 = Time.time;
