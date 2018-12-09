@@ -11,6 +11,10 @@ TagManager:
   - RightBound
   - Ground
   - Roof
+  - Hole
+  - Checkpoint
+  - Range
+  - Boss
   layers:
   - Default
   - TransparentFX

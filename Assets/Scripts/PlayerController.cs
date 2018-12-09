@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public enum PlayerState {
@@ -30,6 +31,10 @@ public class PlayerController : MonoBehaviour {
     private bool attackingMode = false;
     private float movingSpeed = 5;
     private float jumpForce = 13;
+    public static int lives;
+    private int maxLives = 3;
+
+    private Vector3 respawnPoint = new Vector3(0, 1, 0);
 
     public LayerMask groundLayer;
 
@@ -41,6 +46,10 @@ public class PlayerController : MonoBehaviour {
         this.attackingCollider = GameObject.FindGameObjectWithTag("AttackingCollider").GetComponent<Collider2D>();
         this.comboCollider = GameObject.FindGameObjectWithTag("ComboCollider").GetComponent<Collider2D>();
         this.asPlayer = GetComponent<AudioSource>();
+        lives = PlayerPrefs.GetInt("lives", 0);
+        if(lives == 0){
+            lives = 3;
+        }
     }
 	
 	// Update is called once per frame
@@ -126,8 +135,28 @@ public class PlayerController : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
         this.grounded = true;
         this.state = PlayerState.Standing;
-
+        if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Boss") {
+            controlLives(-1);
+        }
     }
+
+    private void controlLives(int update) {
+        int new_life = lives + update;
+        if(new_life <= 0) {
+            lives = 0;
+            PlayerPrefs.SetInt("lives", lives);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("GameOver");
+            gameObject.SetActive(false);
+        }
+        else if(new_life < maxLives){
+            lives = new_life;
+            PlayerPrefs.SetInt("lives", lives);
+            PlayerPrefs.Save();
+        }
+        
+    }
+
 
     public void activateAttacking() {
         this.attackingCollider.enabled = true;
@@ -168,5 +197,19 @@ public class PlayerController : MonoBehaviour {
         if(collision.tag == "Enemy") {
             Destroy(collision.gameObject);
         }
+
+        if(collision.tag == "Hole") {
+            controlLives(-1);
+            if (lives > 0)
+                transform.position = respawnPoint;
+            
+        }
+
+        if(collision.tag == "Checkpoint") {
+            Vector3 pos = collision.transform.position;
+            respawnPoint = pos;
+        }
+
     }
+
 }

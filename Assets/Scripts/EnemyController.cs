@@ -16,7 +16,6 @@ public class EnemyController : MonoBehaviour {
     private int dir = 1;
     private float movingSpeed = 2;
     private float auxTime = 0;
-    private float dt = 0;
 
     private Difficulty type;
 

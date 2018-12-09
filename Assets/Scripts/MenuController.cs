@@ -13,7 +13,14 @@ public class MenuController : MonoBehaviour {
     }
 
     public void loadGame() {
-        //Load last game
+        int levelLastTimePlayed = PlayerPrefs.GetInt("Level", 0);
+
+        if(levelLastTimePlayed == 1) {
+            SceneManager.LoadScene("Level1");
+        }else if(levelLastTimePlayed == 2) {
+            SceneManager.LoadScene("Level2Boss");
+        }
+        
     }
 
     public void optionsUI() {

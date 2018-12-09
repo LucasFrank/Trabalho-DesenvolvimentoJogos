@@ -62,7 +62,6 @@ public class CameraController : MonoBehaviour {
 
                 transform.position = new Vector3(x, y, transform.position.z);
             } else {
-                Debug.Log("test");
                 float targetX = Mathf.Max(levelMinX, Mathf.Min(levelMaxX, player.transform.position.x));
 
                 float x = Mathf.SmoothDamp(transform.position.x, targetX, ref smoothDampVelocity.x, smoothDampTime);

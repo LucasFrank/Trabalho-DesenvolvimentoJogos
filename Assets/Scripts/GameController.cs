@@ -11,7 +11,8 @@ public class GameController : MonoBehaviour {
 
     private Vector3 spawnPosition;
 
-
+    private int currentLevel;
+    private Scene currentScene;
 
     // Use this for initialization
     void Start () {
@@ -21,10 +22,30 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+        currentScene = SceneManager.GetActiveScene();
+        if (player.activeInHierarchy == true) {
+            if (currentScene.name == "Level1") {
+                currentLevel = 1;
+            } else if (currentScene.name == "Level2Boss") {
+                currentLevel = 2;
+            }
+        } else {
+            currentLevel = 0;
+        }
+        PlayerPrefs.SetInt("Level", currentLevel);
+
+        //Go to Main Menu
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            SceneManager.LoadScene("Menu");
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        SceneManager.LoadScene("Level2Boss");
+        if (currentLevel == 1) {
+            SceneManager.LoadScene("Level2Boss");
+        }else if(currentLevel == 2) {
+            SceneManager.LoadScene("BossScene");
+        }
     }
 }
