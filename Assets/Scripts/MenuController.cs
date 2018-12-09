@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour {
 
+    void Start() {
+    }
+
     public void startGame() {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("StartCinematic");
     }
 
     public void loadGame() {
